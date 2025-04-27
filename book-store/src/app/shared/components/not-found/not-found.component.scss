@@ -1,0 +1,43 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    // padding: 20px;
+}
+
+.error-code {
+    font-size: 8rem;
+    color: #ff6b6b;
+    margin: 0;
+}
+
+.error-message {
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: #333;
+}
+
+.error-description {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.5rem;
+    max-width: 400px;
+}
+
+.home-link {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.home-link:hover {
+    background-color: #0056b3;
+}
