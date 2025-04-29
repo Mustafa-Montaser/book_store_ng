@@ -1,1 +1,130 @@
-<p>register works!</p>
+<form
+    [formGroup]="registerForm" (ngSubmit)="submitRegisterForm(registerForm)"
+    class="w-50 mx-auto position-relative py-0"
+>
+    <div class="form-header">
+        <p>Create New Account</p>
+        <p>Register</p>
+    </div>
+    <div class="form-fields mt-0">
+        <div class="form-name row gx-1">
+            <div class="col-lg-6">
+                <div class="">
+                    <label for="fName" class=" d-block my-2">First Name</label>
+                    <mat-form-field class="w-100">
+                        <!-- <mat-label>Joun Doe</mat-label> -->
+                        <input 
+                            matInput 
+                            id="fName"
+                            placeholder="Joun Doe"
+                            [formControl]="fName"
+                            (blur)="updateFNameErrorMessage()"
+                            required
+                        >
+                        @if (fName.invalid) {
+                            <mat-error>{{fNameErrorMessage()}}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="">
+                    <label for="lName" class=" d-block my-2">Last Name</label>
+                    <mat-form-field class="w-100">
+                        <!-- <mat-label>Joun Doe</mat-label> -->
+                        <input matInput 
+                            id="lName"
+                            placeholder="Joun Doe"
+                            [formControl]="lName"
+                            (blur)="updateLNameErrorMessage()"
+                            required
+                        >
+                        @if (lName.invalid) {
+                            <mat-error>{{lNameErrorMessage()}}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="form-email">
+            <label for="email" class=" d-block my-2">E-mail</label>
+            <mat-form-field class="w-100">
+                <!-- <mat-label>Enter your email</mat-label> -->
+                <input
+                    id="email"
+                    matInput
+                    placeholder="pat@example.com"
+                    [formControl]="email"
+                    (blur)="updateEmailErrorMessage()"
+                    required
+                />
+                @if (email.invalid) {
+                    <mat-error>{{emailErrorMessage()}}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="form-password mt-2">
+            <label for="password" class=" d-block my-2">Password</label>
+            <mat-form-field class="w-100" >
+                <!-- <mat-label>Enter your password</mat-label> -->
+                <input 
+                    matInput 
+                    id="password"
+                    placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
+                    [type]="passHide() ? 'password' : 'text'" 
+                    [formControl]="password"
+                    (blur)="updatePasswordErrorMessage()"
+                    required
+                />
+                @if (password.invalid) {
+                    <mat-error class="bg-white w-100">{{passwordErrorMessage()}}</mat-error>
+                }
+                <button
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    (click)="showHidePass($event)"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="passHide()"
+                >
+                    <mat-icon>{{passHide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="form-role ">
+            <label for="role" class=" d-block my-2">Role</label>
+            <mat-form-field class="w-100">
+                <!-- <mat-label>Choose your role</mat-label> -->
+                <mat-select 
+                    id="role" 
+                    [formControl]="role"
+                    (blur)="updateRoleErrorMessage()"
+                    required
+                >
+                    <mat-option value="admin" disabled>Admin</mat-option>
+                    <mat-option value="Customer">Customer</mat-option>
+                </mat-select>
+                @if (role.invalid) {
+                    <mat-error class="bg-white w-100">{{roleErrorMessage()}}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="btns mt-0">
+        <button 
+            mat-flat-button
+            class="rounded-0 w-100 fs-5 py-4 mb-2"
+            type="submit"
+        >
+            Register
+        </button>
+        <button 
+            mat-flat-button
+            class="rounded-0 w-100 fs-5 py-4 mb-2 bg-white" 
+            type="button"
+            [routerLink]="['/auth/login']"  
+        >
+            Login
+        </button>
+    </div>
+</form>

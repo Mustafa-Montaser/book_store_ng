@@ -1,0 +1,6 @@
+[A] API integration {
+    [1] create interceptor
+    [2] test API and create enums for data posted and data retrieved
+    [3] create service
+    [4] create form
+}
