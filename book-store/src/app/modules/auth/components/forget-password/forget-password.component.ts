@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { UserForgetPassword } from '../../../../core/interfaces/user-forget-password';
+import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({
     selector: 'app-forget-password',
@@ -33,6 +34,7 @@ export class ForgetPasswordComponent {
     private _AuthService = inject(AuthService);
     private _Router = inject(Router);
     private _snackBar = inject(MatSnackBar);
+    private _SpinnerService = inject(SpinnerService);
     // =======================================================================================
 
     // form controls
@@ -73,11 +75,13 @@ export class ForgetPasswordComponent {
         let enableSubmit = false;
         Object.values(this.forgetPasswordForm.controls).forEach(formCtrl => enableSubmit = formCtrl.errors === null ? true : false);
         if(enableSubmit) {
+            this._SpinnerService.isEnabled = true;
             this._AuthService.onForgetPassword(formData.value as UserForgetPassword).subscribe({
                 next: (res) => {
                     this._snackBar.open(res.message, "Done", {
                         duration: 5000
                     });
+                    this._SpinnerService.isEnabled = false;
                 },
                 error: (e) => {
                     this._snackBar.open(e.error?.message, "Undo");

@@ -21,4 +21,9 @@
     }
 }
 
-<!-- <router-outlet />  -->
+<!-- spinner -->
+@if(_SpinnerService.isEnabled) {
+    <div class="spinner">
+        <app-spinner></app-spinner>
+    </div>
+}

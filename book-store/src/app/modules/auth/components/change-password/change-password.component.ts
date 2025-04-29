@@ -15,6 +15,7 @@ import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { UserChangePassword } from '../../../../core/interfaces/user-change-password';
+import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({
     selector: 'app-change-password',
@@ -36,6 +37,7 @@ export class ChangePasswordComponent {
     private _AuthService = inject(AuthService);
     private _Router = inject(Router);
     private _snackBar = inject(MatSnackBar);
+    private _SpinnerService = inject(SpinnerService);
     // =======================================================================================
 
     // form controls
@@ -114,12 +116,14 @@ export class ChangePasswordComponent {
         let enableSubmit = false;
         Object.values(this.changePasswordForm.controls).forEach(formCtrl => enableSubmit = formCtrl.errors === null ? true : false);
         if(enableSubmit) {
+            this._SpinnerService.isEnabled = true;
             if(localStorage.getItem("userToken") !== null || sessionStorage.getItem("userToken") !== null) {
                 this._AuthService.onChangePassword(formData.value as UserChangePassword).subscribe({
                     next: (res) => {
                         this._snackBar.open(res.message, "Done", {
                             duration: 5000
                         });
+                        this._SpinnerService.isEnabled = false;
                     },
                     error: (e) => {
                         this._snackBar.open(e.error?.message, "Undo");

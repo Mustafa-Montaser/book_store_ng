@@ -16,6 +16,7 @@ import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { UserLogin } from '../../../../core/interfaces/user-login';
+import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({
     selector: 'app-login',
@@ -38,6 +39,7 @@ export class LoginComponent {
     private _AuthService = inject(AuthService);
     private _Router = inject(Router);
     private _snackBar = inject(MatSnackBar);
+    private _SpinnerService = inject(SpinnerService);
     // =======================================================================================
 
     // form controls
@@ -113,6 +115,7 @@ export class LoginComponent {
         let enableSubmit = false;
         Object.values(this.loginForm.controls).forEach(formCtrl => enableSubmit = formCtrl.errors === null ? true : false);
         if(enableSubmit) {
+            this._SpinnerService.isEnabled = true;
             this._AuthService.onLogin(formData.value as UserLogin).subscribe({
                 next: (res) => {
                     if(this.rememberMeChecked) {
@@ -123,6 +126,7 @@ export class LoginComponent {
                     this._snackBar.open(res.message, "Done", {
                         duration: 5000
                     });
+                    this._SpinnerService.isEnabled = false;
                 },
                 error: (e) => {
                     this._snackBar.open(e.error?.message, "Undo");

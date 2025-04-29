@@ -15,8 +15,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { UserLogin } from '../../../../core/interfaces/user-login';
 import { UserResetPassword } from '../../../../core/interfaces/user-reset-password';
+import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({
     selector: 'app-reset-password',
@@ -39,6 +39,7 @@ export class ResetPasswordComponent {
     private _AuthService = inject(AuthService);
     private _Router = inject(Router);
     private _snackBar = inject(MatSnackBar);
+    private _SpinnerService = inject(SpinnerService);
     // =======================================================================================
 
     // form controls
@@ -129,16 +130,13 @@ export class ResetPasswordComponent {
         let enableSubmit = false;
         Object.values(this.resetPasswordForm.controls).forEach(formCtrl => enableSubmit = formCtrl.errors === null ? true : false);
         if(enableSubmit) {
+            this._SpinnerService.isEnabled = true;
             this._AuthService.onResetPassword(formData.value as UserResetPassword).subscribe({
                 next: (res) => {
                     this._snackBar.open(res.message, "Done", {
                         duration: 5000
                     });
-                    // if(this.rememberMeChecked) {
-                    //     localStorage.setItem('userToken', res.data.accessToken);
-                    // } else {
-                    //     sessionStorage.setItem('userToken', res.data.accessToken);
-                    // }
+                    this._SpinnerService.isEnabled = false;
                 },
                 error: (e) => {
                     this._snackBar.open(e.error?.message, "Undo");

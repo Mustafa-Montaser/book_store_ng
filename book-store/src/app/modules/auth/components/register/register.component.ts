@@ -15,8 +15,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { UserLogin } from '../../../../core/interfaces/user-login';
 import { UserRegister } from '../../../../core/interfaces/user-register';
+import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({
     selector: 'app-register',
@@ -39,6 +39,7 @@ export class RegisterComponent {
     private _AuthService = inject(AuthService);
     private _Router = inject(Router);
     private _snackBar = inject(MatSnackBar);
+    private _SpinnerService = inject(SpinnerService);
     // =======================================================================================
 
     // form controls
@@ -158,11 +159,13 @@ export class RegisterComponent {
         let enableSubmit = false;
         Object.values(this.registerForm.controls).forEach(formCtrl => enableSubmit = formCtrl.errors === null ? true : false);
         if(enableSubmit) {
+            this._SpinnerService.isEnabled = true;
             this._AuthService.onRegister(formData.value as UserRegister).subscribe({
                 next: (res) => {
                     this._snackBar.open(res.message, "Done", {
                         duration: 5000
                     });
+                    this._SpinnerService.isEnabled = false;
                 },
                 error: (e) => {
                     this._snackBar.open(e.error?.message, "Undo");

@@ -7,6 +7,8 @@ import { AuthLayoutComponent } from './modules/auth/components/auth-layout/auth-
 import { DashboardLayoutComponent } from './modules/dashboard/components/dashboard-layout/dashboard-layout.component';
 import { ErrorLayoutComponent } from './shared/components/error-layout/error-layout.component';
 import { NotFoundComponent } from "./shared/components/not-found/not-found.component";
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { SpinnerService } from './shared/services/spinner.service';
 
 @Component({
     selector: 'app-root',
@@ -16,12 +18,16 @@ import { NotFoundComponent } from "./shared/components/not-found/not-found.compo
         AuthLayoutComponent,
         DashboardLayoutComponent,
         ErrorLayoutComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        SpinnerComponent
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
-    constructor(public _PageLayoutService: PageLayoutService) {}
+    constructor(
+        public _PageLayoutService: PageLayoutService,
+        public _SpinnerService: SpinnerService,
+    ) {}
     readonly pageLayout = PageLayout;
 }
