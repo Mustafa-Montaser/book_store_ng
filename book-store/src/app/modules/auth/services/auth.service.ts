@@ -9,6 +9,8 @@ import { UserForgetPassword } from '../../../core/interfaces/user-forget-passwor
 import { ForgetPasswordResponse } from '../../../core/interfaces/forget-password-response';
 import { UserResetPassword } from '../../../core/interfaces/user-reset-password';
 import { ResetPasswordResponse } from '../../../core/interfaces/reset-password-response';
+import { UserChangePassword } from '../../../core/interfaces/user-change-password';
+import { ChangePasswordResponse } from '../../../core/interfaces/change-password-response';
 
 @Injectable({
     providedIn: 'root'
@@ -30,5 +32,9 @@ export class AuthService {
 
     onResetPassword(data: UserResetPassword): Observable<ResetPasswordResponse> {
         return this._HttpClient.post<ResetPasswordResponse>('api/auth/reset-password', data);
+    }   
+
+    onChangePassword(data: UserChangePassword): Observable<ChangePasswordResponse> {
+        return this._HttpClient.post<ChangePasswordResponse>('api/auth/change-password', data);
     }   
 }

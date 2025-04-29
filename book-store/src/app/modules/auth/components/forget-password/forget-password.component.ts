@@ -10,10 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { UserLogin } from '../../../../core/interfaces/user-login';
 import { UserForgetPassword } from '../../../../core/interfaces/user-forget-password';
 
 @Component({
@@ -24,7 +23,6 @@ import { UserForgetPassword } from '../../../../core/interfaces/user-forget-pass
         FormsModule, 
         ReactiveFormsModule, 
         MatButtonModule,
-        RouterLink,
     ],
     templateUrl: './forget-password.component.html',
     styleUrl: './forget-password.component.scss',
