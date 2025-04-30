@@ -15,7 +15,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { UserLogin } from '../../../../core/interfaces/user-login';
+import { UserLogin } from '../../interfaces/user-login';
 import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({

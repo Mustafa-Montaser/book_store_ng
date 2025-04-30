@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { UserChangePassword } from '../../../../core/interfaces/user-change-password';
+import { UserChangePassword } from '../../interfaces/user-change-password';
 import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({

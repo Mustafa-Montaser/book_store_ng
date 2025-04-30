@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserLogin } from '../../../core/interfaces/user-login';
+import { UserLogin } from '../interfaces/user-login';
 import { Observable } from 'rxjs';
-import { LoginResponse } from '../../../core/interfaces/login-response';
-import { UserRegister } from '../../../core/interfaces/user-register';
-import { RegisterResponse } from '../../../core/interfaces/register-response';
-import { UserForgetPassword } from '../../../core/interfaces/user-forget-password';
-import { ForgetPasswordResponse } from '../../../core/interfaces/forget-password-response';
-import { UserResetPassword } from '../../../core/interfaces/user-reset-password';
-import { ResetPasswordResponse } from '../../../core/interfaces/reset-password-response';
-import { UserChangePassword } from '../../../core/interfaces/user-change-password';
-import { ChangePasswordResponse } from '../../../core/interfaces/change-password-response';
+import { LoginResponse } from '../interfaces/login-response';
+import { UserRegister } from '../interfaces/user-register';
+import { RegisterResponse } from '../interfaces/register-response';
+import { UserForgetPassword } from '../interfaces/user-forget-password';
+import { ForgetPasswordResponse } from '../interfaces/forget-password-response';
+import { UserResetPassword } from '../interfaces/user-reset-password';
+import { ResetPasswordResponse } from '../interfaces/reset-password-response';
+import { UserChangePassword } from '../interfaces/user-change-password';
+import { ChangePasswordResponse } from '../interfaces/change-password-response';
 
 @Injectable({
     providedIn: 'root'

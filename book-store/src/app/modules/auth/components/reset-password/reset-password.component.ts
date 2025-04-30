@@ -15,7 +15,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { UserResetPassword } from '../../../../core/interfaces/user-reset-password';
+import { UserResetPassword } from '../../interfaces/user-reset-password';
 import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({

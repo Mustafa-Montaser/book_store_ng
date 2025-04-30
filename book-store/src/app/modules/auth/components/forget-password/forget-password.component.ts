@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { UserForgetPassword } from '../../../../core/interfaces/user-forget-password';
+import { UserForgetPassword } from '../../interfaces/user-forget-password';
 import { SpinnerService } from '../../../../shared/services/spinner.service';
 
 @Component({
