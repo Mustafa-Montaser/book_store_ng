@@ -1,1 +1,36 @@
-<p>navbar works!</p>
+<nav class="">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 d-flex align-items-center justify-content-center">
+                <div class="img"></div>
+            </div>
+            <div class="col-7">
+                <div class=" d-flex align-items-center justify-content-center">
+                    <ul class="d-flex list-unstyled d-flex justify-content-between align-items-center">
+                        @let navTabs = ["HOME", "ABOUT US", "BOOKS", "NEW RELEASE", "CONTACT US", "BLOG"];
+                        @for (navTab of navTabs; track navTab; let isLast = $last) {
+                            <li class="px-3 py-2 mt-2 fw-bold">
+                                <a>{{ navTab }}</a>
+                            </li>
+                            @if (!isLast) {
+                                <span class="seperator mt-2"></span>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-3 d-flex align-items-center">
+                <div class="d-flex align-items-center nav-icons">
+                    <mat-icon class="icon me-4">person</mat-icon>
+                    <span class="seperator me-4"></span>
+                    <mat-icon class="icon me-4">shopping_cart</mat-icon>
+                    <span class="seperator me-4"></span>
+                    <mat-icon class="icon me-4">favorite</mat-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+    
