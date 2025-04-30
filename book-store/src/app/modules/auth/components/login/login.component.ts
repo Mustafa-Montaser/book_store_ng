@@ -130,6 +130,7 @@ export class LoginComponent {
                 },
                 error: (e) => {
                     this._snackBar.open(e.error?.message, "Undo");
+                    this._SpinnerService.isEnabled = false;
                 },
                 complete: () => {
                     this._Router.navigate(["/dashboard"]);
