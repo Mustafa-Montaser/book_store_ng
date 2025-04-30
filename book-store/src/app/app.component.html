@@ -1,4 +1,6 @@
-@switch (_PageLayoutService.layout$ | async) {
+<!-- @switch (_PageLayoutService.layout$ | async) { -->
+<!-- @switch (_PageLayoutService.pageLayout) { -->
+@switch (_PageLayoutService.layout()) {
     @case(pageLayout.UNAUTHORIZED) { 
         <app-auth-layout> 
             <router-outlet /> 
@@ -15,9 +17,9 @@
         </app-error-layout> 
     }
     @default { 
-        <app-auth-layout> 
-            <router-outlet /> 
-        </app-auth-layout> 
+        <div class="spinner">
+            <app-spinner></app-spinner>
+        </div>
     }
 }
 

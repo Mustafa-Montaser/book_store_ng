@@ -116,8 +116,8 @@ export class ChangePasswordComponent {
         let enableSubmit = false;
         Object.values(this.changePasswordForm.controls).forEach(formCtrl => enableSubmit = formCtrl.errors === null ? true : false);
         if(enableSubmit) {
-            this._SpinnerService.isEnabled = true;
             if(localStorage.getItem("userToken") !== null || sessionStorage.getItem("userToken") !== null) {
+                this._SpinnerService.isEnabled = true;
                 this._AuthService.onChangePassword(formData.value as UserChangePassword).subscribe({
                     next: (res) => {
                         this._snackBar.open(res.message, "Done", {

@@ -8,5 +8,6 @@ import { RouterLink } from '@angular/router';
     styleUrl: './not-found.component.scss'
 })
 export class NotFoundComponent {
+    constructor() {}
 
 }

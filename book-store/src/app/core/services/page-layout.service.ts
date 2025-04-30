@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Subject } from 'rxjs';
 import { PageLayout } from '../Enums/page-layout';
 
@@ -8,10 +8,20 @@ import { PageLayout } from '../Enums/page-layout';
 export class PageLayoutService {
     constructor() { }
 
-    layoutSubject = new Subject<PageLayout>();
-    layout$ = this.layoutSubject.asObservable();
+    private _layout = signal<PageLayout>(PageLayout.START);
+    layout = this._layout.asReadonly();
 
-    setLayout(newLayout: PageLayout) {
-        this.layoutSubject.next(newLayout);
+    setLayout(pgLayout: PageLayout) {
+        this._layout.set(pgLayout);
     }
+
+    
+    // pageLayout: PageLayout = PageLayout.START;
+
+    // layoutSubject = new Subject<PageLayout>();
+    // layout$ = this.layoutSubject.asObservable();
+
+    // setLayout(newLayout: PageLayout) {
+    //     this.layoutSubject.next(newLayout);
+    // }
 }

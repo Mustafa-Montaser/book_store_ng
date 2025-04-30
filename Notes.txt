@@ -4,3 +4,48 @@
     [3] create service
     [4] create form
 }
+
+=====================================================================
+=====================================================================
+=====================================================================
+
+To be done laterly_____
+=====================================================================
+
+[1] implement custom icons (svg)
+
+// icon.service.ts
+import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+
+@Injectable({ providedIn: 'root' })
+export class IconService {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
+    const icons = ['facebook', 'instagram', 'twitter'];
+    icons.forEach(icon =>
+      this.iconRegistry.addSvgIcon(
+        icon,
+        this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`)
+      )
+    );
+  }
+}
+
+=====================================================================
+
+[2] navbar navigation 
+    - search for component, 
+    - responsive design
+    - navigate along the page
+    
+=====================================================================
+
+ISSUES --- problems
+
+[1] when load dashboard page -> home, auth module is loaded for a while 
+[2] need the write way to call API when laod a component (like. HomeComponent)
+[3] Direct route to the page that has to call API onInit 
+    --> Not Open and got internal server error 500
+[4] ERROR NG0100
+=====================================================================

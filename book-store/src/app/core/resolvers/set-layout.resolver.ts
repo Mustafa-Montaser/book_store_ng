@@ -1,3 +1,7 @@
+// =======================
+// NOT USED
+// =======================
+
 import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
 import { PageLayout } from '../Enums/page-layout';
 import { inject } from '@angular/core';

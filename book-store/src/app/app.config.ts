@@ -25,7 +25,6 @@ export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes),
         provideClientHydration(withEventReplay()),
-        provideHttpClient(),
         provideHttpClient(withInterceptors([globalInterceptor])),
     ],
 };
