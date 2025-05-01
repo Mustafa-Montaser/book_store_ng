@@ -22,15 +22,15 @@ export class HomeComponent {
     private _SpinnerService = inject(SpinnerService);
 
     ngOnInit(): void {
-        this._SpinnerService.isEnabled = true;
+        this._SpinnerService.enable();
         this._ProductService.getAllBooks().subscribe({
             next: (res) => {
                 console.log(res);
-                this._SpinnerService.isEnabled = false;
+                this._SpinnerService.disable();
             }, 
             error: (e) => {
                 this._snackBar.open(e.error?.message, "Undo");
-                this._SpinnerService.isEnabled = false;
+                this._SpinnerService.disable();
             },
             complete: () => {
 

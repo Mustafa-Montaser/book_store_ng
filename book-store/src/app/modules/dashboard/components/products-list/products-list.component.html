@@ -1,1 +1,35 @@
-<p>products-list works!</p>
+<div class="header text-uppercase text-center py-4 d-flex align-content-center justify-content-center">
+    <p class="m-auto">home / products</p> 
+    <button 
+        class="shop-btn d-block px-5 bg-transparent border-0"
+        [routerLink]="['/dashboard/cart']"
+    >
+        <mat-icon class="shop">shopping_cart</mat-icon>
+    </button>
+</div>
+<div class="container pb-5">
+    <div class="row">
+        @for (book of books()?.data; track $index) {
+            <div class="col-md-4 col-lg-3 g-5">
+                <div class="content position-relative book">
+                    <div class="img-cont shadow p-4">
+                        <!-- <img [src]="book.image" alt="book image"> -->
+                        <img [src]="`https://picsum.photos/${400+$index}`" alt="book image" class="w-100 object-fit-contain">
+                    </div>
+                    <div class="text-center data d-flex flex-column">
+                        <span class="my-1 mt-4 fw-bold">{{ book.name }}</span>
+                        <span class="my-1">{{ book.author }}</span>
+                        <span class="my-1 fw-bold">{{ book.price | currency  }}</span>
+                        <!-- <span class="my-1 fw-bold">{{ book._id }}</span> -->
+                    </div>
+                    <button 
+                        class="main-btn text-uppercase text-white border-0 px-4 py-1 position-absolute"
+                        (click)="addBookToCart(book)"
+                    >
+                        add to card
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

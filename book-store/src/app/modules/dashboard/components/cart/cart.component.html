@@ -1,1 +1,60 @@
-<p>cart works!</p>
+<div class="header text-uppercase text-center py-4 d-flex align-content-center justify-content-center">
+    <p class="m-auto">home / Cart</p> 
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="details rounded">
+                <h5 class="p-3">Products Detailes</h5>
+                <div class="table-cont">
+                    @let displayedColumns = ["book", "amount", "cost", "SubTotal", "del"];
+                    <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
+                        <ng-container matColumnDef="book">
+                            <th mat-header-cell *matHeaderCellDef> Book </th>
+                            <td mat-cell *matCellDef="let element" class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div style="width: 70px; height: 100px;">
+                                        <img [src]="element.imgURL" alt="" class="w-100">
+                                    </div>
+                                    <span class="d-block ms-3">{{element.name}}</span>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef> Amount </th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="d-flex align-items-center">
+                                    <button class="text-white border-0 btn-modify" (click)="modifyBookAmount()"> - </button>
+                                    <span class="amount"> {{element.amount}} </span>
+                                    <button class="text-white border-0 btn-modify" (click)="modifyBookAmount()"> + </button>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="cost">
+                            <th mat-header-cell *matHeaderCellDef> Cost </th>
+                            <td mat-cell *matCellDef="let element"> {{element.cost | currency}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="SubTotal">
+                            <th mat-header-cell *matHeaderCellDef> Subtotal </th>
+                            <td mat-cell *matCellDef="let element"> {{element.subTotal | currency}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="del">
+                            <th mat-header-cell *matHeaderCellDef>  </th>
+                            <td mat-cell *matCellDef="let element">
+                                <button 
+                                    (click)="handleDeleteBtnClk(element.id)"
+                                    class="border-0 px-3 py-2 rounded bg-danger fw-bold del-btn text-white"
+                                > 
+                                    x 
+                                </button>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
