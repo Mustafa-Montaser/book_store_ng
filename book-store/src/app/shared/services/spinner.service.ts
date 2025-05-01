@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
@@ -7,5 +7,20 @@ export class SpinnerService {
 
     constructor() { }
 
-    isEnabled: boolean = false;
+    private isEnabled = signal<boolean>(false);
+
+    enable() {
+        this.isEnabled.set(true);
+    }
+
+    disable() {
+        this.isEnabled.set(false);
+    }
+
+    status(): boolean {
+        return this.isEnabled();
+    }
+
+
+    // isEnabled: boolean = false;
 }
