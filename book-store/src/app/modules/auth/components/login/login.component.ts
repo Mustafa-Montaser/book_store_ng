@@ -115,7 +115,7 @@ export class LoginComponent {
         let enableSubmit = false;
         Object.values(this.loginForm.controls).forEach(formCtrl => enableSubmit = formCtrl.errors === null ? true : false);
         if(enableSubmit) {
-            this._SpinnerService.isEnabled = true;
+            this._SpinnerService.enable();
             this._AuthService.onLogin(formData.value as UserLogin).subscribe({
                 next: (res) => {
                     if(this.rememberMeChecked) {
@@ -124,13 +124,13 @@ export class LoginComponent {
                         sessionStorage.setItem('userToken', res.data.accessToken);
                     }
                     this._snackBar.open(res.message, "Done", {
-                        duration: 5000
+                        duration: 3000
                     });
-                    this._SpinnerService.isEnabled = false;
+                    this._SpinnerService.disable();
                 },
                 error: (e) => {
                     this._snackBar.open(e.error?.message, "Undo");
-                    this._SpinnerService.isEnabled = false;
+                    this._SpinnerService.disable();
                 },
                 complete: () => {
                     this._Router.navigate(["/dashboard"]);
@@ -138,7 +138,7 @@ export class LoginComponent {
             });
         } else {
             this._snackBar.open("Plz complete the required data", "Close", {
-                // duration: 5000,
+                // duration: 3000,
                 horizontalPosition: "right",
                 verticalPosition: "bottom",
             });

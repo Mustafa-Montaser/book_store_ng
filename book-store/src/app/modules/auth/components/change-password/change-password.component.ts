@@ -117,17 +117,17 @@ export class ChangePasswordComponent {
         Object.values(this.changePasswordForm.controls).forEach(formCtrl => enableSubmit = formCtrl.errors === null ? true : false);
         if(enableSubmit) {
             if(localStorage.getItem("userToken") !== null || sessionStorage.getItem("userToken") !== null) {
-                this._SpinnerService.isEnabled = true;
+                this._SpinnerService.enable();
                 this._AuthService.onChangePassword(formData.value as UserChangePassword).subscribe({
                     next: (res) => {
                         this._snackBar.open(res.message, "Done", {
-                            duration: 5000
+                            duration: 3000
                         });
-                        this._SpinnerService.isEnabled = false;
+                        this._SpinnerService.disable();
                     },
                     error: (e) => {
                         this._snackBar.open(e.error?.message, "Undo");
-                        this._SpinnerService.isEnabled = false;
+                        this._SpinnerService.disable();
                     },
                     complete: () => {
                         this._Router.navigate(["/auth/login"]);
@@ -135,13 +135,13 @@ export class ChangePasswordComponent {
                 });
             } else {
                 this._snackBar.open("Plz login first", "Ok", {
-                    duration: 5000
+                    duration: 3000
                 });
                 this._Router.navigate(["/auth/login"]);
             }
         } else {
             this._snackBar.open("Plz complete the required data", "Close", {
-                // duration: 5000,
+                // duration: 3000,
                 horizontalPosition: "right",
                 verticalPosition: "bottom",
             });
