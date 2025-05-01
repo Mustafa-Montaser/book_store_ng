@@ -11,12 +11,15 @@ export const authGuard: CanActivateFn = (route, state) => {
     
     let guardActivate = false;
     
-    if(localStorage.getItem("userToken") !== null || sessionStorage.getItem("userToken") !== null) {
+    if(
+        (typeof window !== 'undefined' && typeof localStorage !== 'undefined') && 
+        (localStorage.getItem("userToken") !== null || sessionStorage.getItem("userToken") !== null)
+    ) {
         guardActivate = true;        
     } else {
         _Router.navigate(["/auth/login"]);
         _snackBar.open("PLZ login first !!", "Undo", {
-            duration: 5000
+            duration: 3000
         });
     }
 
