@@ -1,4 +1,4 @@
-interface book {
+export interface Book {
     _id: string,
     name: string,
     description: string,
@@ -13,7 +13,7 @@ interface book {
 }
 
 export interface AllBooks {
-    data: book[],
+    data: Book[],
     total: number,
     page: number,
     limit: number,
