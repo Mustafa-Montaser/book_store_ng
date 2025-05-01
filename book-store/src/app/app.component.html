@@ -24,8 +24,6 @@
 }
 
 <!-- spinner -->
-@if(_SpinnerService.isEnabled) {
-    <div class="spinner">
-        <app-spinner></app-spinner>
-    </div>
+@if(_SpinnerService.status()) {
+    <app-spinner></app-spinner>
 }
