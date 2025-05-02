@@ -6,6 +6,8 @@ import { CartResponse } from '../interfaces/cart-response';
 import { GetBasketResponse } from '../interfaces/get-basket-response';
 import { DeleteItem } from '../interfaces/delete-item';
 import { DeleteResponse } from '../interfaces/delete-response';
+import { UpdateResponse } from '../interfaces/update-response';
+import { UpdateItem } from '../interfaces/update-item';
 
 @Injectable({
     providedIn: 'root'
@@ -25,5 +27,9 @@ export class CartService {
 
     getBasket(): Observable<GetBasketResponse> {
         return this._HttpClient.get<GetBasketResponse>("api/basket");
+    }
+
+    updateBasket(basketID: string, updatedItems: UpdateItem): Observable<UpdateResponse> {
+        return this._HttpClient.put<UpdateResponse>(`api/basket/${basketID}`, { items: updatedItems.items });
     }
 }

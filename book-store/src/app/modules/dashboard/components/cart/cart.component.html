@@ -2,8 +2,8 @@
     <p class="m-auto">home / Cart</p> 
 </div>
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row g-5">
+        <div class="col-lg-8">
             <div class="details rounded">
                 <h5 class="p-3">Products Detailes</h5>
                 <div class="table-cont">
@@ -24,9 +24,19 @@
                             <th mat-header-cell *matHeaderCellDef> Amount </th>
                             <td mat-cell *matCellDef="let element">
                                 <div class="d-flex align-items-center">
-                                    <button class="text-white border-0 btn-modify" (click)="modifyBookAmount()"> - </button>
+                                    <button 
+                                        class="text-white border-0 btn-modify"
+                                        (click)="modifyBookAmount('dec', element)"
+                                    > 
+                                        - 
+                                    </button>
                                     <span class="amount"> {{element.amount}} </span>
-                                    <button class="text-white border-0 btn-modify" (click)="modifyBookAmount()"> + </button>
+                                    <button 
+                                        class="text-white border-0 btn-modify" 
+                                        (click)="modifyBookAmount('inc', element)"
+                                    > 
+                                        + 
+                                    </button>
                                 </div>
                             </td>
                         </ng-container>
@@ -42,7 +52,7 @@
                             <th mat-header-cell *matHeaderCellDef>  </th>
                             <td mat-cell *matCellDef="let element">
                                 <button 
-                                    (click)="handleDeleteBtnClk(element.id)"
+                                    (click)="deleteSingleBook(element.id)"
                                     class="border-0 px-3 py-2 rounded bg-danger fw-bold del-btn text-white"
                                 > 
                                     x 
@@ -55,6 +65,24 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-lg-4">
+            <div class="details rounded">
+                <h5 class="p-3 border-bottom border-2 border-secondary-subtle">Cart Total Cost</h5>
+                <div class="cost-cont py-2 mt-3">
+                    <div class="px-2 d-flex justify-content-between py-2 fs-4 border-bottom border-2 border-secondary-subtle">
+                        <span>Total</span>
+                        <span>{{ cartCost().total | currency }}</span>
+                    </div>
+                    <div class="px-2 d-flex justify-content-between py-2 fs-4 border-bottom border-2 border-secondary-subtle">
+                        <span>Tax</span>
+                        <span>{{ cartCost().tax | currency }}</span>
+                    </div>
+                    <div class="px-2 d-flex justify-content-between py-2 fs-4">
+                        <span>Total Cost</span>
+                        <span>{{ cartCost().totalCost | currency }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
