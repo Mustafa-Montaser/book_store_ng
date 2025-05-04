@@ -10,9 +10,10 @@ import { CartDetail } from '../../interfaces/cart-detail';
 import { CommonModule } from '@angular/common';
 import { DeleteResItems, DeleteResponse } from '../../interfaces/delete-response';
 
-import { of, forkJoin } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { of, forkJoin, Observable, BehaviorSubject } from 'rxjs';
 import { UpdateItem } from '../../interfaces/update-item';
+import { Store } from '@ngrx/store';
+import { updateCartCostAction } from '../../../../store/store.actions';
 
 
 @Component({
@@ -24,12 +25,12 @@ import { UpdateItem } from '../../interfaces/update-item';
 })
 export class CartComponent implements OnInit {
 
-    constructor() { }
-
+    
     private _MatSnackBar = inject(MatSnackBar);
     private _SpinnerService = inject(SpinnerService);
     private _CartService = inject(CartService);
     private _ProductService = inject(ProductService);
+    private _Store = inject(Store);
 
     private TAX = 0.21;
 
@@ -41,6 +42,14 @@ export class CartComponent implements OnInit {
         tax: 0,
         totalCost: 0
     });
+
+
+    // ====== test ngrx =======
+    cartCost$: Observable<{total: number; tax: number; totalCost: number}> = new Observable();
+    constructor() {
+        this.cartCost$ = this._Store.select("cartCost");
+    }
+    // ===================
 
 
     ngOnInit(): void {
@@ -166,5 +175,7 @@ export class CartComponent implements OnInit {
         temp.tax = total * this.TAX;
         temp.totalCost = total + total * this.TAX;
         this.cartCost.set(temp);
+        // test ngrx
+        this._Store.dispatch(updateCartCostAction(temp));
     }
 }

@@ -25,11 +25,11 @@
                             <td mat-cell *matCellDef="let element">
                                 <div class="d-flex align-items-center">
                                     <button 
-                                        class="text-white border-0 btn-modify"
-                                        (click)="modifyBookAmount('dec', element)"
+                                    class="text-white border-0 btn-modify"
+                                    (click)="modifyBookAmount('dec', element)"
                                     > 
-                                        - 
-                                    </button>
+                                    - 
+                                </button>
                                     <span class="amount"> {{element.amount}} </span>
                                     <button 
                                         class="text-white border-0 btn-modify" 
@@ -52,7 +52,7 @@
                             <th mat-header-cell *matHeaderCellDef>  </th>
                             <td mat-cell *matCellDef="let element">
                                 <button 
-                                    (click)="deleteSingleBook(element.id)"
+                                (click)="deleteSingleBook(element.id)"
                                     class="border-0 px-3 py-2 rounded bg-danger fw-bold del-btn text-white"
                                 > 
                                     x 
@@ -81,6 +81,15 @@
                         <span>Total Cost</span>
                         <span>{{ cartCost().totalCost | currency }}</span>
                     </div>
+                </div>
+                <!-- test ngrx  -->
+                <div class="w-50 shadow rounded p-3"> 
+                    @for(_ of cartCost$ | async | keyvalue; track $index;) {
+                        <p class="d-flex justify-content-between">
+                            <span>{{ _.key }}</span>
+                            <span>{{ _.value | currency }}</span>
+                        </p>
+                    }
                 </div>
             </div>
         </div>

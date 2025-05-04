@@ -20,11 +20,14 @@ import {
     withEventReplay,
 } from '@angular/platform-browser';
 import { globalInterceptor } from './core/interseptors/global.interceptor';
+import { provideStore } from '@ngrx/store';
+import { _store_ } from './store/store.store';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes),
         provideClientHydration(withEventReplay()),
         provideHttpClient(withInterceptors([globalInterceptor])),
+        provideStore(_store_)
     ],
 };
